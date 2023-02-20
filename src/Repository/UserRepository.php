@@ -39,6 +39,37 @@ class UserRepository extends ServiceEntityRepository
         }
     }
 
+    public function verifyEmail($email): array
+        {
+            return $this->createQueryBuilder('u')
+                ->andWhere('u.email = :email') 
+                ->setParameter('email', $email)
+                ->getQuery()
+                ->getResult()
+            ;
+        
+        }
+
+    public function getUserInfoByEmail($email): array
+        {
+            return $this->createQueryBuilder('u')
+                ->andWhere('u.email = :email') 
+                ->setParameter('email', $email)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+        
+     public function getUserInfoByToken($tokenPasswordReset): array
+        {
+            return $this->createQueryBuilder('u')
+                ->andWhere('u.tokenPasswordReset = :tokenPasswordReset') 
+                ->setParameter('tokenPasswordReset', $tokenPasswordReset)
+                ->getQuery()
+                ->getResult()
+            ;
+        }
+
 //    /**
 //     * @return User[] Returns an array of User objects
 //     */

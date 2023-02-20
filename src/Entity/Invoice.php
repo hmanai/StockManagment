@@ -110,16 +110,6 @@ class Invoice
 
         return $this;
     }
-    public function getDateArray()
-    {
-        return $this->dateArray;
-    }
-
-    public function setDateArray($wdPointArray)
-    {
-        $this->dateArray[] = $wdPointArray;     
-        return $this;
-    }
 
 	
 

@@ -31,7 +31,24 @@ use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
  *              "path"="/user/signup",
  *              "controller"=App\Controller\Api\User\Signup::class
  *          },
- *              
+ *           "forgot_password"={
+ *              "method"="PUT",
+ *              "normalization_context"={"groups"={"read:GetUserInformation"}},
+ *              "path"="/user/forgotpassword",
+ *              "controller"=App\Controller\Api\User\ForgotPassword::class
+ *          },   
+ *           "reset_password"={
+ *              "method"="PUT",
+ *              "normalization_context"={"groups"={"read:resetPassword"}},
+ *              "path"="/user/resetPassword/{tokenPasswordReset}",
+ *              "controller"=App\Controller\Api\User\ResetPassword::class
+ *          },    
+ *           "get_reset_password"={
+ *              "method"="GET",
+ *              "normalization_context"={"groups"={"read:user"}},
+ *              "path"="/user/checKTokenPassword/{tokenPasswordReset}",
+ *              "controller"=App\Controller\Api\User\GetResetPassword::class
+ *          },  
  *              
  *       }
  * 
@@ -104,13 +121,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $invoices;
 
-
-
     public function __construct()
     {
         $this->products = new ArrayCollection();
     }
-
 
     public function getId(): ?int
     {
